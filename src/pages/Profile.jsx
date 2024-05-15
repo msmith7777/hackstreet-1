@@ -11,9 +11,6 @@ function Profile() {
   const savePrice = () => {};
   const saveWalkscore = () => {};
   const [scores, setScore] = useState([]);
-  //Saves the minimum and maximum prices of the array of favorite houses.
-  var minPrice = favoriteHouses.indexOf(0).price;
-  var maxPrice = favoriteHouses.indexOf(favoriteHouses.size() - 1).price;
 
 //Accesses the list of favorite houses top be used in the profile.
   useEffect(() => {
@@ -35,15 +32,15 @@ function Profile() {
 //Calculates "score" of a house with input from the user, and saves that score to a seperate array, keeping track of house IDs,
 //and then sorts the list based on score.
 const decisionMatrix = () => {
-  for (let i = 0; i < favoriteHouses.size(); i++) {
-  getScores.indexOf(i).setHouse = favoriteHouses.indexOf(i);
-  getScores.indexOf(i).setScore = (favoriteHouses.walkscore / 10) * saveWalkscore + 
-  ((favoriteHouses.indexOf(favoriteHouses.size() - 1).price - favoriteHouses.indexOf(0).price) / favoriteHouses.indexOf(i).price)
-   * savePrice;
+  for (let i = 0; i < favoriteHouses.length; i++) {
+  setScore.indexOf(i).setHouse = favoriteHouses.indexOf(i);
+  setScore.indexOf(i).setScore = (favoriteHouses.walkscore / 10) * saveWalkscore + 
+  (1 - (favoriteHouses.indexOf(i).price - favoriteHouses.indexOf(0).price) / (favoriteHouses.indexOf(favoriteHouses.length - 1).price
+   - favoriteHouses.indexOf(0).price)) * 10 * savePrice;
 }
-const sortedHouses = [...scores].sort((a, b) => a.score - b.score);
-for (let i = 0; i < favoriteHouses.size(); i++) {
-  favoriteHouses.indexOf(i) = sortedHouses(i).house;
+const sortedScores = [...scores].sort((a, b) => a.score - b.score);
+for (let i = 0; i < favoriteHouses.length; i++) {
+  favoriteHouses.indexOf(i) = sortedScores(i).house;
 }
 }
 
@@ -59,7 +56,7 @@ for (let i = 0; i < favoriteHouses.size(); i++) {
       <label for="walkscore">Walkscore:</label>
       <input type="number" id ="inputtedWalkscore" name="walkscore" onChange={saveWalkscore} min = "0" max = "10"></input>
       <h1>Favorites</h1>
-    <button onClick={sortHousesByPrice}>Sort favorite houses based on preference.</button>
+    <button onClick={decisionMatrix}>Sort favorite houses based on preference.</button>
       {favoriteHouses.map((house) => {
   return (
     <div key={house.id}>
