@@ -30,7 +30,7 @@ function Profile() {
     setFavoriteHouses(sortedHouses);
   };
 //Calculates "score" of a house with input from the user, and saves that score to a seperate array, keeping track of house IDs,
-//and then sorts the list based on score.
+//and then sorts the list based on score..
 const decisionMatrix = () => {
   for (let i = 0; i < favoriteHouses.length; i++) {
   setScore.indexOf(i).setHouse = favoriteHouses.indexOf(i);
